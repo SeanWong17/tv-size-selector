@@ -34,7 +34,8 @@
 ## 🚀 快速开始
 
 ### 在线体验
-[https://seanwong17.github.io/tv-size-selector/]
+https://seanwong17.github.io/tv-size-selector/
+https://tv-size-selector.netlify.app/
 
 ### 本地运行
 1.  克隆本仓库或直接下载 ZIP。
