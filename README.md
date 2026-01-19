@@ -16,7 +16,7 @@
 2.  **侧视图 (Side View)**：展示垂直视角与安装高度，预防颈椎疲劳。
 3.  **3D 第一人称视角 (First-Person POV)**：模拟真实的客厅观感，支持视频贴图播放。
 
-本项目为纯前端实现，单个 HTML 文件即可运行，零依赖。
+本项目为纯前端实现，双击 HTML 文件即可运行，零依赖。
 
 ## ✨ 功能特性
 
@@ -35,8 +35,6 @@
 
 ### 在线体验
 https://seanwong17.github.io/tv-size-selector/
-
-[备用链接](https://tv-size-selector.netlify.app/)
 
 
 ### 本地运行

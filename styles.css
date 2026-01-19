@@ -1,0 +1,720 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+    min-height: 100vh;
+    color: #fff;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: #888;
+    font-size: 1rem;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+@media (max-width: 1000px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.control-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: fit-content;
+}
+
+.control-section {
+    margin-bottom: 20px;
+}
+
+.control-section:last-child {
+    margin-bottom: 0;
+}
+
+.control-section h3 {
+    font-size: 0.9rem;
+    color: #00d4ff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-section h3::before {
+    content: '';
+    width: 3px;
+    height: 14px;
+    background: #00d4ff;
+    border-radius: 2px;
+}
+
+.input-group {
+    margin-bottom: 12px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.input-group label small {
+    color: #666;
+    font-weight: normal;
+}
+
+.input-group input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #333;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.input-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+    cursor: pointer;
+}
+
+.input-value {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: #555;
+}
+
+.input-value .current {
+    color: #00d4ff;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.tv-sizes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.tv-size-btn {
+    padding: 10px 5px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: transparent;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tv-size-btn:hover {
+    border-color: #00d4ff;
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.tv-size-btn.active {
+    border-color: #00d4ff;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(123, 47, 247, 0.2));
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.tv-size-btn span {
+    display: block;
+    font-size: 0.65rem;
+    color: #666;
+    margin-top: 2px;
+    font-weight: normal;
+}
+
+.visualization {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.view-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media (max-width: 800px) {
+    .view-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.view-panel {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.view-panel h4 {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-panel h4 .icon {
+    font-size: 1.1rem;
+}
+
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    background: #0a0a15;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+}
+
+.angle-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.angle-badge .value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00d4ff;
+}
+
+.angle-badge.good .value { color: #4ade80; }
+.angle-badge.warning .value { color: #fbbf24; }
+.angle-badge.bad .value { color: #f87171; }
+
+.pov-container {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.pov-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    border-radius: 0;
+    background: #0a0a15;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pov-container.fullscreen .pov-view {
+    flex: 1;
+    height: auto;
+}
+
+.pov-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pov-header h4 {
+    font-size: 0.85rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pov-header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pov-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 0.75rem;
+}
+
+.pov-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.pov-stat .stat-value {
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.fullscreen-btn {
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.fullscreen-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+}
+
+/* 3D POV 优化部分 */
+.pov-view {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(180deg, #1a1a3a 0%, #0f0f25 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    /* 关键: 开启 3D 透视 */
+    perspective: 1000px;
+}
+
+.pov-room {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* 地板 */
+.pov-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(0deg, #151525 0%, transparent 100%);
+    /* 简单的地板网格效果 */
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    perspective-origin: bottom;
+    transform-origin: bottom;
+    transform: rotateX(10deg); /* 轻微的倾斜增加深度感 */
+}
+
+.pov-wall {
+    position: absolute;
+    background: linear-gradient(180deg, #2a2a4a 0%, #1f1f3a 100%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: all 0.4s ease;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+    /* 3D 属性 */
+    transform-style: preserve-3d;
+}
+
+.pov-wall-label {
+    position: absolute;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.pov-wall-width-label {
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pov-wall-height-label {
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 电视 3D 效果增强 */
+.pov-tv {
+    position: absolute;
+    background: #080808;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #111;
+    z-index: 10;
+    transition: all 0.4s ease;
+    
+    /* 关键: 3D 浮动效果 */
+    transform: translateZ(15px); 
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6), /* 远阴影 */
+        0 0 0 1px #222; /* 边框高光 */
+}
+
+/* 屏幕反光模拟 */
+.pov-tv-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e, #252540);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #444;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 玻璃质感反光 */
+.pov-tv-screen::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.pov-tv-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.pov-tv-label {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: 11;
+}
+
+/* 人像参照物样式 */
+.human-ref {
+    position: absolute;
+    bottom: 0;
+    left: 5%; /* 站在墙左侧 */
+    width: 0; /* 宽度由JS动态计算比例 */
+    height: 0; /* 高度由JS动态计算比例 */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 250' fill='%23ffffff' opacity='0.3'%3E%3Ccircle cx='50' cy='30' r='20'/%3E%3Cpath d='M20,60 Q50,50 80,60 Q90,70 85,130 L90,240 L60,240 L50,150 L40,240 L10,240 L15,130 Q10,70 20,60 Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom center;
+    z-index: 5;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    opacity: 0; /* 默认隐藏 */
+    /* 让人像稍微离开墙面一点 */
+    transform: translateZ(50px);
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5));
+}
+
+.human-ref.visible {
+    opacity: 1;
+}
+
+.human-label {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+}
+
+/* 开关样式 */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #888;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-slider {
+    width: 36px;
+    height: 20px;
+    background: #333;
+    border-radius: 20px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background: #00d4ff;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(16px);
+}
+
+.pov-crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 5;
+}
+
+.pov-crosshair::before,
+.pov-crosshair::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+}
+
+.pov-crosshair::before {
+    width: 1px;
+    height: 30px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pov-crosshair::after {
+    width: 30px;
+    height: 1px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+}
+
+.info-card .label {
+    font-size: 0.7rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.info-card .value {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.info-card .value.good { color: #4ade80; }
+.info-card .value.warning { color: #fbbf24; }
+.info-card .value.bad { color: #f87171; }
+
+.recommendation {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(123, 47, 247, 0.1));
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.recommendation h4 {
+    color: #00d4ff;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.recommendation p {
+    color: #bbb;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+.recommendation .rec-size {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4ade80;
+}
+
+.video-controls {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.video-controls label {
+    display: block;
+    margin-bottom: 8px;
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.video-input-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.video-input-group input[type="text"] {
+    flex: 1;
+    min-width: 120px;
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.85rem;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+.legend-color.eye { background: #ff6b6b; }
+.legend-color.tv { background: #4dabf7; }
+.legend-color.fov { background: rgba(0, 212, 255, 0.3); border: 1px solid #00d4ff; }
+.legend-color.optimal { background: rgba(74, 222, 128, 0.3); border: 1px solid #4ade80; }
+
+.exit-fullscreen-hint {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #888;
+    z-index: 100;
+}
+
+.pov-container.fullscreen .exit-fullscreen-hint {
+    display: block;
+}
